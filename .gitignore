@@ -1,0 +1,103 @@
+#############################
+# Java + Test Automation
+# TestNG / Selenium / Cucumber / RestAssured
+#############################
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+log/
+build.log
+tmp/
+dependency-reduced-pom.xml
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+# IntelliJ Cucumber plugin caches
+.idea/libraries/CucumberJava*
+.idea/cucumberProjectSettings.xml
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+report.log
+debug.log
+
+# Test Output
+# (Allure, Extent, Cucumber Reports, Screenshots, etc.)
+allure-results/
+allure-report/
+extent-report/
+reports/
+report/
+test-output/
+test-report/
+target/surefire-reports/
+target/failsafe-reports/
+
+# Cucumber
+*.json
+*.html
+*.rerun
+cucumber-report/
+cucumber-html-report/
+
+# Screenshots
+screenshots/
+*.png
+*.jpg
+
+# Selenium WebDriver files
+.geckodriver.log
+chromedriver.log
+selenium.log
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Environment / Secrets
+*.env
+.env.*
+*.properties.local
+secret.properties
+credentials.properties
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Gradle (in case someone uses it)
+.gradle/
+build/
+
+#############################
+# End of .gitignore
+#############################

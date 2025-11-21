@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # Specify the Java version you need
+
+    - name: Build with Maven
+      run: mvn clean install  # or use ./gradlew build if you are using Gradle
+
+    - name: Run tests
+      run: mvn test  # or use ./gradlew test if you are using Gradle
+
+    - name: Generate reports
+      run: mvn surefire-report:report  # Adjust this if you have a different reporting method
