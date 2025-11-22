@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Selenium CrossBrowser Suite" verbose="1" parallel="tests" thread-count="4">
-<!--    <listeners>-->
-<!--        <listener class-name="com.framework.listeners.TestListener"/>-->
+    <listeners>
+        <listener class-name="com.framework.listeners.TestListener"/>
 <!--        <listener class-name="com.framework.retry.RetryTransformer"/>-->
-<!--    </listeners>-->
+    </listeners>
 
 <!--    <test name="Home Tests">-->
 <!--        <classes>-->

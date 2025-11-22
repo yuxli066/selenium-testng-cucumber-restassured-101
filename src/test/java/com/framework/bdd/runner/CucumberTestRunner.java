@@ -22,8 +22,8 @@ import io.cucumber.testng.CucumberOptions;
         plugin = {
                 "pretty",
                 "html:reports/cucumber/cucumber-html.html",
-                "json:reports/cucumber/cucumber.json",
-                "junit:reports/cucumber/cucumber.xml"
+//                "json:reports/cucumber/cucumber.json",
+//                "junit:reports/cucumber/cucumber.xml"
         },
         monochrome = true,
         publish = false

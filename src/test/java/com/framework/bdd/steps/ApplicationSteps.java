@@ -80,11 +80,18 @@ public class ApplicationSteps {
                 page = new WhyPage();
                 break;
             case "Github":
-
+                /**
+                 * You can implement this part yourself :)
+                 */
                 break;
             case "Youtube":
                 /**
                  * You can implement this page here :D
+                 * Implement search functionality & results functionality
+                 * Implement edge cases
+                 * Challenge:
+                 *  Implement video testing, video load speeds, what if the video doesn't load?
+                 *  CDP protocol can help implement listeners
                  */
                 break;
             default:
