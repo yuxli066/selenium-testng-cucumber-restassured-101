@@ -183,20 +183,25 @@ public class TestListener implements ITestListener, ISuiteListener {
     }
 
     private String savePageSource(String testDisplayName) {
-        try {
-            WebDriver driver = DriverFactory.getDriver();
-            String html = driver.getPageSource();
-            String ts = TS_FMT.format(new Date());
-            Path out = Path.of(ConfigManager.reportDir(), "pagesource", sanitize(testDisplayName),
-                    "page-" + ts + ".html");
-            Files.createDirectories(out.getParent());
-            Files.write(out, html.getBytes(StandardCharsets.UTF_8));
-            logger.info("Saved page source: {}", out.toAbsolutePath());
-            return out.toAbsolutePath().toString();
-        } catch (Exception e) {
-            logger.warn("Failed to save page source for {}", testDisplayName, e);
-            return null;
-        }
+//        try {
+//            WebDriver driver = DriverFactory.getDriver();
+//            String html = driver.getPageSource();
+//            String ts = TS_FMT.format(new Date());
+//            Path out = Path.of(ConfigManager.reportDir(), "pagesource", sanitize(testDisplayName),
+//                    "page-" + ts + ".html");
+//            Files.createDirectories(out.getParent());
+//            Files.write(out, html.getBytes(StandardCharsets.UTF_8));
+//            logger.info("Saved page source: {}", out.toAbsolutePath());
+//            return out.toAbsolutePath().toString();
+//        } catch (Exception e) {
+//            logger.warn("Failed to save page source for {}", testDisplayName, e);
+//            return null;
+//        }
+        /**
+         * don't get driver in aftertest hooks, it messes with execution
+         * page source is useless, we can script faster using another framework if we want
+         */
+        return "";
     }
 
     private String sanitize(String name) {

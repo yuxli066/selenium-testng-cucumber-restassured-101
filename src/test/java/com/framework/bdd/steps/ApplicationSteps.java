@@ -5,6 +5,7 @@ import com.framework.pages.HomePage;
 import com.framework.pages.GetStartedPage;
 import com.framework.pages.WhyPage;
 import com.framework.utils.LoggerUtil;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -51,6 +52,19 @@ public class ApplicationSteps {
     public void i_search_for(String query) {
         logger.info("Step: I search for '{}'", query);
         homePage.search(query);
+    }
+
+    @And("I wait for page load")
+    public void i_wait_for_page_load() {
+        logger.info("Step: I wait for page load");
+        homePage.sleep(1000);
+        homePage.waitForPageToBeStable();
+    }
+
+    @Then("I validate search results for {string}")
+    public void validate_search_results(String searchResults) {
+        logger.info("Step: Validate search results for '{}'", searchResults);
+        homePage.validateSearchResults();
     }
 
     /**

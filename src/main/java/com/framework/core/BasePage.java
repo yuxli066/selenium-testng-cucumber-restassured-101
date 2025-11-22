@@ -162,6 +162,28 @@ public abstract class BasePage {
     }
 
     /**
+     * Send key to browser
+     * @param keyToSend
+     */
+    protected void keyboardActions(String keyToSend) {
+        Actions actions = new Actions(driver);
+        Keys key = null;
+        switch (keyToSend) {
+            case "Enter":
+                key = Keys.ENTER;
+                break;
+            case "Shift":
+                key = Keys.SHIFT;
+                break;
+            default:
+                key = Keys.CONTROL;
+        }
+        actions.keyDown(key)
+                .keyUp(key)
+                .perform();
+    }
+
+    /**
      * Type text into an element after waiting for visibility.
      */
     protected void type(By locator, String text) {
@@ -270,7 +292,7 @@ public abstract class BasePage {
     /**
      * Utility sleep with logging for short pauses (avoid using large sleeps).
      */
-    protected void sleep(long millis) {
+    public void sleep(long millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException ie) {

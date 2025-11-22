@@ -22,8 +22,9 @@ public class HomePage extends BasePage {
     private final String URL_PATH = "https://webdriver.io/";
 
     // Locators
-    private final By searchBox = By.name("q");
-    private final By searchButton = By.name("btnK");
+    private final By searchButton = By.cssSelector("[class=\"DocSearch DocSearch-Button\"]");
+    private final By searchBox = By.id("docsearch-input");
+
     private final By homePageTitle = By.xpath("//*[text()=\"Next-gen browser and mobile automation test framework for Node.js\"]");
 
     // button By class builder
@@ -82,9 +83,10 @@ public class HomePage extends BasePage {
      */
     public void search(String query) {
         logger.info("Searching with query='{}'", query);
-        clearAndType(searchBox, query);
-        // Google search button becomes clickable after typing; safeClick handles waits/retries
         safeClick(searchButton);
+        clearAndType(searchBox, query);
+        super.sleep(1000); // explicitly wait for 1s
+        super.keyboardActions("Enter");
         waitForPageToBeStable();
     }
 
@@ -114,5 +116,13 @@ public class HomePage extends BasePage {
      */
     public String getTitle() {
         return super.getTitle();
+    }
+
+    /**
+     * This should technically be moved to a separate page, but for demo we will keep in same page
+     */
+    public void validateSearchResults() {
+        By browserObjectSearchResult = By.xpath("//h1[text()=\"The Browser Object\"]");
+        Assert.assertTrue(super.driver.findElement(browserObjectSearchResult).isDisplayed());
     }
 }
