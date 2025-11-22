@@ -31,13 +31,15 @@ public abstract class BaseTest {
      */
     @BeforeMethod(alwaysRun = true)
     public void setUp(ITestContext context, ITestResult result) {
-        String clazz = result.getTestClass().getName();
-        String method = result.getMethod().getMethodName();
-        logger.info("Setting up test: {}.{}", clazz, method);
-        logger.info("Execution config: browser={}, headless={}, executionType={}, baseUrl={}",
-                ConfigManager.browser(), ConfigManager.headless(), ConfigManager.executionType(), ConfigManager.baseUrl());
-        // Initialize driver for this thread
-        DriverFactory.getDriver();
+        if (requiresWebDriver()) {
+            String clazz = result.getTestClass().getName();
+            String method = result.getMethod().getMethodName();
+            logger.info("Setting up test: {}.{}", clazz, method);
+            logger.info("Execution config: browser={}, headless={}, executionType={}, baseUrl={}",
+                    ConfigManager.browser(), ConfigManager.headless(), ConfigManager.executionType(), ConfigManager.baseUrl());
+            // Initialize driver for this thread
+            DriverFactory.getDriver();
+        }
     }
 
     /**
@@ -47,10 +49,12 @@ public abstract class BaseTest {
      */
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
-        String clazz = result.getTestClass().getName();
-        String method = result.getMethod().getMethodName();
-        logger.info("Tearing down test: {}.{} | status={}", clazz, method, statusName(result.getStatus()));
-        DriverFactory.quitDriver();
+        if (requiresWebDriver()) {
+            String clazz = result.getTestClass().getName();
+            String method = result.getMethod().getMethodName();
+            logger.info("Tearing down test: {}.{} | status={}", clazz, method, statusName(result.getStatus()));
+            DriverFactory.quitDriver();
+        }
     }
 
     private String statusName(int status) {
