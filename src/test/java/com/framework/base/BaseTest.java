@@ -8,6 +8,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import io.restassured.RestAssured;
 
 /**
  * BaseTest centralizes per-test WebDriver lifecycle and common logging.
@@ -39,6 +40,8 @@ public abstract class BaseTest {
                     ConfigManager.browser(), ConfigManager.headless(), ConfigManager.executionType(), ConfigManager.baseUrl());
             // Initialize driver for this thread
             DriverFactory.getDriver();
+        } else {
+            RestAssured.baseURI = ConfigManager.get("api.url");
         }
     }
 

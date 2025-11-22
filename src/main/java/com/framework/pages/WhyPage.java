@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WhyPage extends BasePage {
 
-    private static final Logger logger = LoggerUtil.getLogger(HomePage.class);
+    private static final Logger logger = LoggerUtil.getLogger(WhyPage.class);
     private static final String URL_PATH = "/why-webdriverio";
 
     private final List<By> elements = new ArrayList<By>(Arrays.asList(

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class GetStartedPage extends BasePage {
-    private static final Logger logger = LoggerUtil.getLogger(HomePage.class);
+    private static final Logger logger = LoggerUtil.getLogger(GetStartedPage.class);
     private static final String URL_PATH = "/gettingstarted";
 
     private final List<By> elements = new ArrayList<By>(Arrays.asList(

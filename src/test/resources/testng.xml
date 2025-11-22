@@ -11,6 +11,12 @@
         </classes>
     </test>
 
+    <test name="API Tests">
+        <classes>
+            <class name="com.tests.ApiTest"/>
+        </classes>
+    </test>
+
     <test name="Cucumber BDD">
         <classes>
             <class name="com.framework.bdd.runner.CucumberTestRunner"/>

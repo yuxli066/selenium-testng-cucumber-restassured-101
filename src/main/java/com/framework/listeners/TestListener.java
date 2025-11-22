@@ -93,29 +93,31 @@ public class TestListener implements ITestListener, ISuiteListener {
      */
     @Override
     public void onTestFailure(ITestResult result) {
-        String testDisplay = currentTestName(result);
-        logger.error("Test failed: {} - {}", testDisplay,
-                result.getThrowable() != null ? result.getThrowable().getMessage() : "no message", result.getThrowable());
+//        String testDisplay = currentTestName(result);
+//        logger.error("Test failed: {} - {}", testDisplay,
+//                result.getThrowable() != null ? result.getThrowable().getMessage() : "no message", result.getThrowable());
+//
+//        String screenshotPath = attachScreenshotIfEnabled(result, false);
+//        String pageSourcePath = savePageSource(testDisplay);
+//        String logsPath = LogsUtil.saveBrowserLogs(testDisplay);
+//
+//        if (ExtentTestManager.getTest() != null) {
+//            if (screenshotPath != null) {
+//                ExtentTestManager.getTest().fail("Failure screenshot attached",
+//                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+//            }
+//            if (pageSourcePath != null) {
+//                ExtentTestManager.getTest().info("Saved page source: " + pageSourcePath);
+//            }
+//            if (logsPath != null) {
+//                ExtentTestManager.getTest().info("Saved browser logs: " + logsPath);
+//            }
+//            ExtentTestManager.getTest().fail(result.getThrowable());
+//        }
+//        ExtentTestManager.endTest();
+//        ThreadContext.remove("test");
 
-        String screenshotPath = attachScreenshotIfEnabled(result, false);
-        String pageSourcePath = savePageSource(testDisplay);
-        String logsPath = LogsUtil.saveBrowserLogs(testDisplay);
-
-        if (ExtentTestManager.getTest() != null) {
-            if (screenshotPath != null) {
-                ExtentTestManager.getTest().fail("Failure screenshot attached",
-                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
-            }
-            if (pageSourcePath != null) {
-                ExtentTestManager.getTest().info("Saved page source: " + pageSourcePath);
-            }
-            if (logsPath != null) {
-                ExtentTestManager.getTest().info("Saved browser logs: " + logsPath);
-            }
-            ExtentTestManager.getTest().fail(result.getThrowable());
-        }
-        ExtentTestManager.endTest();
-        ThreadContext.remove("test");
+        // bug in this function, a new webdriver is starting.
     }
 
     /**
