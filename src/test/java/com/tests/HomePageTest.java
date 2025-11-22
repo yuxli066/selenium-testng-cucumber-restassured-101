@@ -1,6 +1,6 @@
 package com.tests;
 
-import com.framework.base.BaseTest;
+import com.framework.base.UiTestBase;
 import com.framework.pages.GetStartedPage;
 import com.framework.pages.WhyPage;
 import com.framework.pages.HomePage;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  * - Page Object usage with robust BasePage helpers
  * - Retry mechanism via RetryAnalyzer
  */
-public class HomePageTest extends BaseTest {
+public class HomePageTest extends UiTestBase {
 
     private final Logger logger = LoggerUtil.getLogger(HomePageTest.class);
 

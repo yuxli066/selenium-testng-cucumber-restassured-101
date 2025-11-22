@@ -39,6 +39,12 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
         </dependency>
+        <!-- RestAssured for backend API testing -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.4.0</version>
+        </dependency>
         <!-- Cucumber: Java, TestNG Integration, Reporting -->
         <dependency>
             <groupId>io.cucumber</groupId>

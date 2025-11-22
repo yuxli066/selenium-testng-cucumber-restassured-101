@@ -19,7 +19,9 @@ import org.testng.annotations.BeforeMethod;
 public abstract class BaseTest {
 
     protected final Logger logger = LoggerUtil.getLogger(getClass());
-
+    protected boolean requiresWebDriver() {
+        return false;
+    }
     /**
      * Per-test setup. Initializes a thread-local WebDriver instance.
      * Uses DriverFactory which is thread-safe and supports local/grid/cloud execution.
@@ -63,4 +65,5 @@ public abstract class BaseTest {
                 return "UNKNOWN";
         }
     }
+
 }
