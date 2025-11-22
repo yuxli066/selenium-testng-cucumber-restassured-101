@@ -5,6 +5,7 @@ import com.framework.utils.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 /**
  * HomePage page object.
@@ -18,16 +19,43 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends BasePage {
 
     private static final Logger logger = LoggerUtil.getLogger(HomePage.class);
+    private final String URL_PATH = "https://webdriver.io/";
 
     // Locators
     private final By searchBox = By.name("q");
     private final By searchButton = By.name("btnK");
+    private final By homePageTitle = By.xpath("//*[text()=\"Next-gen browser and mobile automation test framework for Node.js\"]");
+
+    // button By class builder
+    private By buttonByWrapper(String id) {
+        String buttonSelectorBase = String.format(
+                "a[class *= 'button'][href=\"%s\"]",
+                id
+        );
+        return By.cssSelector(buttonSelectorBase);
+    }
 
     /**
      * Default constructor uses thread-local WebDriver from DriverFactory and default explicit wait.
      */
     public HomePage() {
         super();
+    }
+
+    /**
+     * validate URL
+     */
+    public void validateUrl() {
+        String  currentUrl = super.getCurrentUrl();
+        logger.debug("Current URL: {}", currentUrl);
+        Assert.assertEquals(URL_PATH, currentUrl);
+    }
+
+    /**
+     * Validate Page elements
+     */
+    public void validatePageElements() {
+        super.waitVisible(this.homePageTitle);
     }
 
     /**
@@ -58,6 +86,26 @@ public class HomePage extends BasePage {
         // Google search button becomes clickable after typing; safeClick handles waits/retries
         safeClick(searchButton);
         waitForPageToBeStable();
+    }
+
+    /**
+     * click a button
+     * @param buttonName the search query text
+     */
+    public void click(String buttonName) throws Exception {
+        logger.info("Click button with id or href: {}", buttonName);
+        String buttonID = "";
+        switch (buttonName) {
+            case "Get Started":
+                buttonID = "/docs/gettingstarted";
+                break;
+            case "Why WebdriverIO":
+                buttonID = "/docs/why-webdriverio";
+                break;
+            default:
+                throw new Exception("Please pass a valid button name: [Get Started, Why WebdriverIO]");
+        }
+        safeClick(this.buttonByWrapper(buttonID));
     }
 
     /**

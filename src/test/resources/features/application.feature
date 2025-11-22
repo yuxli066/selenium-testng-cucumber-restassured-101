@@ -7,5 +7,11 @@ Feature: Google Search
   @smoke @ui
   Scenario: Search displays results
     Given I am on the WebdriverIO home page
-    When I search for "Selenium"
-    Then I should see results that contain "Selenium"
+    When I click button "Get Started"
+    Then I should validate page: "Get Started"
+
+  @smoke @uix
+  Scenario: Search displays results
+    Given I am on the WebdriverIO home page
+    When I click button "Why WebdriverIO"
+    Then I should validate page: "Why WebdriverIO"

@@ -31,6 +31,10 @@ public abstract class BasePage {
     protected final Logger logger = LoggerUtil.getLogger(getClass());
     private final int explicitWaitSeconds;
 
+    /** abstract functions **/
+    public abstract void validateUrl();
+    public abstract void validatePageElements();
+
     /**
      * Construct a BasePage with the current thread's WebDriver from DriverFactory.
      * Uses explicit wait timeout from ConfigManager.explicitWaitSec().

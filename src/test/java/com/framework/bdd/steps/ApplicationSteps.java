@@ -1,6 +1,9 @@
 package com.framework.bdd.steps;
 
+import com.framework.core.BasePage;
 import com.framework.pages.HomePage;
+import com.framework.pages.GetStartedPage;
+import com.framework.pages.WhyPage;
 import com.framework.utils.LoggerUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -32,12 +35,12 @@ public class ApplicationSteps {
 
     /**
      * Perform a search for the provided query text using the HomePage object.
-     * @param query the text to search
+     * @param buttonName the text to search
      */
     @When("I click button {string}")
-    public void i_click_button(String buttonName) {
-        logger.info("Step: I search for '{}'", query);
-        homePage.search(query);
+    public void i_click_button(String buttonName) throws Exception {
+        logger.info("Step: I click '{}'", buttonName);
+        homePage.click(buttonName);
     }
 
     /**
@@ -60,5 +63,37 @@ public class ApplicationSteps {
         logger.info("Step: Asserting title contains '{}'. Actual='{}'", expected, title);
         Assert.assertTrue(title.toLowerCase().contains(expected.toLowerCase()),
                 "Expected title to contain '" + expected + "' but was '" + title + "'");
+    }
+
+    /**
+     * Assert that the current page title contains the expected substring.
+     * @param pageName part of the title expected to be present
+     */
+    @Then("I should validate page: {string}")
+    public void validate_page(String pageName) throws Exception {
+        BasePage page = null;
+        switch (pageName) {
+            case "Get Started":
+                page = new GetStartedPage();
+                break;
+            case "Why WebdriverIO":
+                page = new WhyPage();
+                break;
+            case "Github":
+
+                break;
+            case "Youtube":
+                /**
+                 * You can implement this page here :D
+                 */
+                break;
+            default:
+                throw new Exception("Please page a valid page name: [Get Started, Why, View, Youtube]");
+        }
+        if (page == null) {
+            throw new Exception("Page not found");
+        }
+        page.validateUrl();
+        page.validatePageElements();
     }
 }
